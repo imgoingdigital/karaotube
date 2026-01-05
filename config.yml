@@ -1,0 +1,14 @@
+youtube:
+  apiKeys:
+    - AIzaSyDFMrswohqbeWOqM7G6C76fcDWfhDKQB0U
+    # Add more keys here as backups
+    # - YOUR_SECOND_API_KEY
+    # - YOUR_THIRD_API_KEY
+
+server:
+  apiPort: 3000
+  wsPort: 3001
+  
+app:
+  name: LG Karaoke
+  version: 1.0.0

@@ -1,0 +1,19 @@
+{
+  "id": "com.lgkara.app",
+  "version": "1.0.0",
+  "vendor": "PEREZ Karaoke",
+  "type": "web",
+  "main": "index.html",
+  "title": "PEREZ Karaoke",
+  "icon": "icon.png",
+  "largeIcon": "largeIcon.png",
+  "requiredPermissions": [
+    "network.operation",
+    "media.operation",
+    "external.api"
+  ],
+  "resolution": "1920x1080",
+  "allowVideoCapture": true,
+  "allowAudioCapture": false,
+  "bgImage": "icon.png"
+}

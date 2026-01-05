@@ -1,0 +1,13 @@
+{
+  "backend": {
+    "apiUrl": "http://192.168.2.101:3000",
+    "wsUrl": "http://192.168.2.101:3000"
+  },
+  "app": {
+    "name": "PEREZ Karaoke",
+    "version": "1.0.0"
+  },
+  "playback": {
+    "autoplay": true
+  }
+}
