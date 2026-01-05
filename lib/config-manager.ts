@@ -14,6 +14,12 @@ interface Config {
     name: string;
     version: string;
   };
+  library?: {
+    autoSaveThreshold: number;
+    maxTempVideos: number;
+    tempPath: string;
+    savedPath: string;
+  };
 }
 
 class ConfigManager {
@@ -72,3 +78,8 @@ class ConfigManager {
 
 // Singleton instance
 export const configManager = new ConfigManager();
+
+// Export convenience function
+export function getConfig(): Config {
+  return configManager.getConfig();
+}

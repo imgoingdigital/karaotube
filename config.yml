@@ -12,3 +12,14 @@ server:
 app:
   name: LG Karaoke
   version: 1.0.0
+
+library:
+  # Auto-save videos after N plays
+  autoSaveThreshold: 5
+  
+  # Keep only N temporary videos (oldest deleted first)
+  maxTempVideos: 3
+  
+  # Storage paths
+  tempPath: library/youtube
+  savedPath: library/youtube/saved

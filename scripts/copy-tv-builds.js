@@ -8,7 +8,7 @@ const distLgDir = path.join(lgkaraDir, 'dist-lg');
 
 // Destination directories in public
 const publicDir = path.join(__dirname, '../public');
-const tvDir = path.join(publicDir, 'tv');
+const browserDir = path.join(publicDir, 'browser');
 const tvLgDir = path.join(publicDir, 'tv-lg');
 
 function copyRecursive(src, dest) {
@@ -40,12 +40,12 @@ function cleanDirectory(dir) {
 console.log('Copying TV builds to public folder...');
 
 // Clean existing directories
-cleanDirectory(tvDir);
+cleanDirectory(browserDir);
 cleanDirectory(tvLgDir);
 
 // Copy browser build
-console.log('Copying browser build to public/tv/');
-copyRecursive(distDir, tvDir);
+console.log('Copying browser build to public/browser/');
+copyRecursive(distDir, browserDir);
 
 // Copy LG build
 console.log('Copying LG build to public/tv-lg/');
@@ -62,16 +62,15 @@ function updateConfig(configPath) {
   console.log(`  ${path.basename(path.dirname(configPath))}/config.json - ready`);
 }
 
-updateConfig(path.join(tvDir, 'config.json'));
+updateConfig(path.join(browserDir, 'config.json'));
 updateConfig(path.join(tvLgDir, 'config.json'));
 
 console.log('\n✓ Configuration updated!');
 console.log('\n📺 KARA-NEXT - Unified Karaoke System');
 console.log('=====================================');
-console.log('  Main (TV):      http://localhost:3000/');
+console.log('  Home (Browser): http://localhost:3000/');
+console.log('  TV (LG Replica): http://localhost:3000/tv');
 console.log('  Mobile Queue:   http://localhost:3000/mobile');
-console.log('  TV Browser:     http://localhost:3000/tv');
-console.log('  TV LG Build:    http://localhost:3000/tv-lg');
 console.log('\n🌐 Network URLs (replace with your IP):');
 console.log('  http://192.168.2.101:3000/');
 console.log('  http://192.168.2.101:3000/mobile');

@@ -4,7 +4,7 @@ import { queueManager } from '@/lib/queue-manager';
 // POST /api/playback - Control playback
 export async function POST(request: NextRequest) {
   try {
-    const { action, index } = await request.json();
+    const { action, index, fromIndex, toIndex } = await request.json();
 
     let result;
     switch (action) {
@@ -30,6 +30,16 @@ export async function POST(request: NextRequest) {
       case 'complete':
         result = queueManager.removeCurrentAndMoveNext();
         break;
+      case 'skip':
+        // Skip is same as complete - remove current and move to next
+        result = queueManager.removeCurrentAndMoveNext();
+        break;
+      case 'reorder':
+        if (typeof fromIndex === 'number' && typeof toIndex === 'number') {
+          const success = queueManager.reorderQueue(fromIndex, toIndex);
+          return NextResponse.json({ success });
+        }
+        return NextResponse.json({ error: 'fromIndex and toIndex required' }, { status: 400 });
       default:
         return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
     }

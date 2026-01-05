@@ -121,6 +121,33 @@ class QueueManager extends EventEmitter {
     return null;
   }
 
+  reorderQueue(fromIndex: number, toIndex: number): boolean {
+    if (fromIndex < 0 || fromIndex >= this.state.songs.length ||
+        toIndex < 0 || toIndex >= this.state.songs.length) {
+      return false;
+    }
+
+    const [song] = this.state.songs.splice(fromIndex, 1);
+    this.state.songs.splice(toIndex, 0, song);
+
+    // Adjust currentIndex if needed
+    if (this.state.currentIndex === fromIndex) {
+      this.state.currentIndex = toIndex;
+    } else if (fromIndex < this.state.currentIndex && toIndex >= this.state.currentIndex) {
+      this.state.currentIndex--;
+    } else if (fromIndex > this.state.currentIndex && toIndex <= this.state.currentIndex) {
+      this.state.currentIndex++;
+    }
+
+    this.emit('update', this.state);
+    return true;
+  }
+
+  skipCurrent(): Song | null {
+    // Skip behaves same as song complete - remove and move to next
+    return this.removeCurrentAndMoveNext();
+  }
+
   clearQueue(): void {
     this.state.songs = [];
     this.state.currentIndex = -1;
